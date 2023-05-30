@@ -40,17 +40,18 @@
 
 
 //joystick configuration
-#define JOYSTICK_BLANK false //make true if not using the joystick
+#define JOYSTICK_BLANK true //make true if not using the joystick
 #define JOY_FLIP_X false
 #define JOY_FLIP_Y false
 #define JOYSTICK_DEADZONE 10 //deadzone in the joystick to prevent drift (in percent)
 
 #define NO_THUMB false //If for some reason you don't want to track the thumb
 
-#define USING_CALIB_PIN false //When PIN_CALIB is shorted (or it's button pushed) it will reset calibration if this is on.
+#define USING_CALIB_PIN true//When PIN_CALIB is shorted (or it's button pushed) it will reset calibration if this is on.
 
-#define USING_FORCE_FEEDBACK false //Force feedback haptics allow you to feel the solid objects you hold
-#define SERVO_SCALING false //dynamic scaling of servo motors
+#define USING_FORCE_FEEDBACK true
+//*****************Force feedback haptics allow you to feel the solid objects you hold--- true false
+#define SERVO_SCALING true //dynamic scaling of servo motors
 
 #if defined(ESP32)
   //(This configuration is for ESP32 DOIT V1 so make sure to change if you're on another board)
