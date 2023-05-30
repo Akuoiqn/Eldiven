@@ -7,6 +7,7 @@
 
 ICommunication* comm;
 int loops = 0;
+
 void setup() {
   #if COMMUNICATION == COMM_SERIAL
     comm = new SerialCommunication();
@@ -18,7 +19,7 @@ void setup() {
   setupInputs();
 
   #if USING_FORCE_FEEDBACK
-    setupServoHaptics();  
+      setupServoHaptics();
   #endif
   
 }
@@ -64,20 +65,26 @@ void loop() {
     #endif
 
     bool menuButton = getButton(PIN_MENU_BTN) != INVERT_MENU;
-    
-    comm->output(encode(fingerPos, getJoyX(), getJoyY(), joyButton, triggerButton, aButton, bButton, grabButton, pinchButton, calibButton, menuButton));
+     
 
+    comm->output(encode(fingerPos, getJoyX(), getJoyY(), joyButton, triggerButton, aButton, bButton, grabButton, pinchButton, calibButton, menuButton));
+ 
     #if USING_FORCE_FEEDBACK
-      char received[100];
-      if (comm->readData(received)){
-        int hapticLimits[5];
-        //This check is a temporary hack to fix an issue with haptics on v0.5 of the driver, will make it more snobby code later
-        if(String(received).length() >= 10) {
-           decodeData(received, hapticLimits);
-           writeServoHaptics(hapticLimits); 
-        }
-      }
+ //     char received[100];
+//
+        stateMagnet(fingerPos);
+//      
+//      if (comm->readData(received)){
+//       int hapticLimits[5];
+//        //This check is a temporary hack to fix an issue with haptics on v0.5 of the driver, will make it more snobby code later
+//        if(String(received).length() >= 10) {
+//           decodeData(received, hapticLimits);
+//           writeServoHaptics(hapticLimits); 
+     
+//   
     #endif
+ 
+    
     delay(LOOP_TIME);
   }
 }
